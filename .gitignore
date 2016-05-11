@@ -1,0 +1,33 @@
+int flexSensorPin = A0;
+
+void setup() {
+    Serial.begin(9600);
+    delay(250);
+}
+
+void loop() {
+
+    int flexposition = analogRead(flexSensorPin);
+    int flex0to100 = map(flexposition, 150, 400, 100, 0);
+    Serial.println(flex0to100);
+    delay(250);
+
+
+
+  // Turn the Bean's LED red
+  if (flex0to100  > 15)Bean.setLed(255, 0, 0);
+
+  Bean.sleep(1000);
+    {
+  //Turn the Bean's LED green
+  if (flex0to100  < 12 )Bean.setLed(0, 255, 0);
+  Bean.sleep(1000);
+
+  // Turn the Bean's LED blue
+  if (flex0to100  > 12 <15)Bean.setLed(0, 0, 255);
+  Bean.sleep(1000);
+  // Turn off the Bean's LED
+  if (flex0to100  = 0)Bean.setLed(0, 0, 0);
+  Bean.sleep(1000);
+        }
+}
